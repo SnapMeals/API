@@ -1,0 +1,30 @@
+{
+  "name": "Gourmet Low Calorie BBQ Burger",
+  "meal": {
+    "burger_patty": {
+      "ground_turkey": "1 lb",
+      "salt": "1/2 tsp",
+      "black_pepper": "1/4 tsp",
+      "smoked_paprika": "1/4 tsp",
+      "onion_powder": "1/4 tsp",
+      "garlic_powder": "1/4 tsp",
+      "dried_thyme": "1/4 tsp"
+    },
+    "bbq_sauce": {
+      "low_sodium_ketchup": "1 cup",
+      "stevia": "1/4 cup",
+      "apple_cider_vinegar": "2 tbsp",
+      "low_sodium_Worcestershire_sauce": "1 tbsp",
+      "smoked_paprika": "1 tsp",
+      "garlic_powder": "1/2 tsp"
+    },
+    "burger_assembly": {
+      "whole_wheat_burger_buns": "4",
+      "reduced_fat_cheddar_cheese_slices": "4",
+      "turkey_bacon_strips": "8",
+      "red_onion": "1, thinly sliced",
+      "lettuce_leaves": "4",
+      "sliced_tomato": "1"
+    }
+  }
+}
