@@ -55,6 +55,42 @@ def submit_openai_prompt(meal_name: str):
     return processed_message_content
 
 
+def vegetarianize_openai_meal(meal: OpenAIMeal):
+    schema = '''{
+        "name": "meal_name",
+        "meal": {
+            "meal_component1": {
+                "ingredient1": "quantity",
+                "ingredient2": "quantity",
+            },
+            "meal_component2": {
+                "ingredient1": "quantity",
+                "ingredient2": "quantity",
+            }
+        }
+    }'''
+    json_meal = meal.model_dump_json()
+    main_prompt = f'''Take the following meal as JSON input:
+    
+    {json_meal}
+    
+    Following the schema below, I want you to replace all the meat ingredients with vegetarian alternatives:
+    
+    {schema}
+    '''
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        response_format={ "type": "json_object" },
+        messages=[
+            {"role": "system", "content": "You are a world-class chef."},
+            {"role": "user", "content": main_prompt},
+        ]
+    )
+    raw_message_content = response.choices[0].message.content
+    processed_message_content = json.loads(raw_message_content)
+    return processed_message_content
+
+
 @router.post("/suggest_meal")
 async def suggest_meal(meal: Meal):
     # Process the base64 image to identify what the meal represents - for this hackathon, we will not be doing this
@@ -92,3 +128,25 @@ async def confirm_meal(meal: OpenAIMeal):
 
     # Reflect the updated meal the response back to the client
     return meal
+
+
+@router.get("/profile")
+async def get_profile():
+    # Load the user's profile - this includes all their saved meals
+    profile = load_profile()
+
+    # Reflect the updated meal list back to the client
+    return profile
+
+
+##### Premium Features #######
+@router.post("/vegetarianize")
+async def vegetarianize_meal(meal: OpenAIMeal):
+    response = vegetarianize_openai_meal(meal)
+
+    # Check the response for errors
+    if not response:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+    
+    # Return the response back to the client - the client will decide what to do with the response
+    return response
