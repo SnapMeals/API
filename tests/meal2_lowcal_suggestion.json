@@ -1,0 +1,29 @@
+{
+  "name": "Gourmet Bolognese Pasta",
+  "meal": {
+    "pasta": {
+      "whole wheat pasta": "8 oz",
+      "olive oil spray": "2 sprays",
+      "sea salt": "1 tsp"
+    },
+    "bolognese_sauce": {
+      "lean ground turkey": "1 lb",
+      "yellow onion": "1, finely chopped",
+      "carrot": "1, finely chopped",
+      "celery": "1 stalk, finely chopped",
+      "garlic": "3 cloves, minced",
+      "tomato paste": "1 tbsp",
+      "diced tomatoes": "28 oz",
+      "low-sodium chicken broth": "1 cup",
+      "bay leaves": "2",
+      "dried oregano": "1 tsp",
+      "sea salt": "1 tsp",
+      "black pepper": "1/2 tsp",
+      "fresh parsley": "2 tbsp, chopped"
+    },
+    "toppings": {
+      "grated low-fat mozzarella cheese": "1/2 cup",
+      "fresh parsley": "for garnish"
+    }
+  }
+}

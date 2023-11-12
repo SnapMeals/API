@@ -23,8 +23,7 @@ class OpenAIMeal(BaseModel):
     meal: Dict[str, Dict[str, str]]
 
 
-def submit_openai_prompt(meal_name: str):
-    schema = '''{
+MEAL_SCHEMA = '''{
         "name": "meal_name",
         "meal": {
             "meal_component1": {
@@ -37,10 +36,12 @@ def submit_openai_prompt(meal_name: str):
             }
         }
     }'''
+
+def submit_openai_prompt(meal_name: str):
     main_prompt = f'''Make me a list of ingredients for a meal called {meal_name}. Please give me the list of ingredients in JSON.
     The schema of the JSON output should look like this:
     
-    {schema}
+    {MEAL_SCHEMA}
     '''
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-1106",
@@ -56,19 +57,6 @@ def submit_openai_prompt(meal_name: str):
 
 
 def vegetarianize_openai_meal(meal: OpenAIMeal):
-    schema = '''{
-        "name": "meal_name",
-        "meal": {
-            "meal_component1": {
-                "ingredient1": "quantity",
-                "ingredient2": "quantity",
-            },
-            "meal_component2": {
-                "ingredient1": "quantity",
-                "ingredient2": "quantity",
-            }
-        }
-    }'''
     json_meal = meal.model_dump_json()
     main_prompt = f'''Take the following meal as JSON input:
     
@@ -76,7 +64,30 @@ def vegetarianize_openai_meal(meal: OpenAIMeal):
     
     Following the schema below, I want you to replace all the meat ingredients with vegetarian alternatives:
     
-    {schema}
+    {MEAL_SCHEMA}
+    '''
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo-1106",
+        response_format={ "type": "json_object" },
+        messages=[
+            {"role": "system", "content": "You are a world-class chef."},
+            {"role": "user", "content": main_prompt},
+        ]
+    )
+    raw_message_content = response.choices[0].message.content
+    processed_message_content = json.loads(raw_message_content)
+    return processed_message_content
+
+
+def lowcal_openai_meal(meal: OpenAIMeal):
+    json_meal = meal.model_dump_json()
+    main_prompt = f'''Take the following meal as JSON input:
+    
+    {json_meal}
+    
+    Following the schema below, I want you to replace all the ingredients with low calorie alternatives:
+    
+    {MEAL_SCHEMA}
     '''
     response = client.chat.completions.create(
         model="gpt-3.5-turbo-1106",
@@ -143,6 +154,18 @@ async def get_profile():
 @router.post("/vegetarianize")
 async def vegetarianize_meal(meal: OpenAIMeal):
     response = vegetarianize_openai_meal(meal)
+
+    # Check the response for errors
+    if not response:
+        raise HTTPException(status_code=500, detail="Internal Server Error")
+    
+    # Return the response back to the client - the client will decide what to do with the response
+    return response
+
+
+@router.post("/lowcal")
+async def lowcal_meal(meal: OpenAIMeal):
+    response = lowcal_openai_meal(meal)
 
     # Check the response for errors
     if not response:
