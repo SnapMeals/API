@@ -5,7 +5,10 @@ from openai import OpenAI
 
 router = APIRouter()
 
-client = OpenAI()
+client = OpenAI(
+    # organization=os.getenv("OPENAI_ORGANIZATION"),
+    api_key=os.getenv("OPENAI_API_KEY"),
+)
 
 @router.get("/example")
 def read_example():
