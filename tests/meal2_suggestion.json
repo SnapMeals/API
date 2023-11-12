@@ -1,0 +1,30 @@
+{
+  "name": "Gourmet Bolognese Pasta",
+  "meal": {
+    "pasta": {
+      "linguine pasta": "8 oz",
+      "olive oil": "2 tbsp",
+      "salt": "1 tsp"
+    },
+    "bolognese_sauce": {
+      "ground beef": "1 lb",
+      "onion": "1, finely chopped",
+      "carrot": "1, finely chopped",
+      "celery": "1 stalk, finely chopped",
+      "garlic": "3 cloves, minced",
+      "tomato paste": "2 tbsp",
+      "canned crushed tomatoes": "28 oz",
+      "red wine": "1/2 cup",
+      "beef broth": "1 cup",
+      "bay leaves": "2",
+      "dried oregano": "1 tsp",
+      "salt": "1 tsp",
+      "black pepper": "1/2 tsp",
+      "fresh basil": "2 tbsp, chopped"
+    },
+    "toppings": {
+      "parmesan cheese": "1/2 cup, grated",
+      "fresh basil": "for garnish"
+    }
+  }
+}

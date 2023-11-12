@@ -1,0 +1,35 @@
+{
+  "name": "Gourmet Smoked BBQ Burger",
+  "meal": {
+    "burger_patties": {
+      "ground_beef": "1 lb",
+      "onion": "1, finely chopped",
+      "garlic": "2 cloves, minced",
+      "smoked_paprika": "1 tsp",
+      "salt": "1 tsp",
+      "black_pepper": "1/2 tsp"
+    },
+    "bbq_sauce": {
+      "ketchup": "1 cup",
+      "brown_sugar": "1/4 cup",
+      "apple_cider_vinegar": "2 tbsp",
+      "smoked_paprika": "1 tsp",
+      "garlic_powder": "1/2 tsp",
+      "onion_powder": "1/2 tsp"
+    },
+    "burger_fixings": {
+      "burger_buns": "4",
+      "cheddar_cheese": "4 slices",
+      "lettuce": "4 leaves",
+      "tomato": "2, sliced",
+      "red_onion": "1, thinly sliced",
+      "pickles": "8 slices"
+    },
+    "smoked_bacon": {
+      "bacon_strips": "8",
+      "smoker_wood_chips": "2 cups",
+      "brown_sugar": "2 tbsp",
+      "black_pepper": "1 tsp"
+    }
+  }
+}

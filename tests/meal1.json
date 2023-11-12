@@ -1,0 +1,6 @@
+{
+    "id": "3fe4299d62e4cfaf7bad22d3695e332c",
+    "name": "Gourmet Smoked BBQ Burger",
+    "ingredients": ["patty", "lettuce", "onion", "tomato"],
+    "photo": "somebase64encodedblob"
+}
